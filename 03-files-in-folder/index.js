@@ -20,7 +20,7 @@ const getFiles = async (filesPath) => {
 
     const fileSize = await getFileSize(filePath);
 
-    return `${file.name.split('.').join(' - ')} - ${fileSize}`;
+    return `${file.name.split('.').join(' - ')} - ${fileSize} bytes`;
   });
 
   const result = await Promise.all(stats);
