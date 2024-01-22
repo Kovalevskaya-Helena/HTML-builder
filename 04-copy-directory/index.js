@@ -1,6 +1,5 @@
 const fs = require('fs/promises');
 const path = require('node:path');
-
 const PATH = path.join(__dirname, 'files');
 const PATHCOPY = path.join(__dirname, 'files-copy');
 
@@ -24,5 +23,4 @@ const copy = async () => {
     });
   });
 };
-
 copy();
