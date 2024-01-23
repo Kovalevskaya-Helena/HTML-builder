@@ -14,13 +14,11 @@ const getFiles = async (filesPath) => {
   const stats = files.map(async (file) => {
     const filePath = path.join(filesPath, file.name);
 
-    if (file.isDirectory()) {
-      return await getFiles(filePath);
+    if (file.isFile()) {
+      const fileSize = await getFileSize(filePath);
+
+      return `${file.name.split('.').join(' - ')} - ${fileSize} bytes`;
     }
-
-    const fileSize = await getFileSize(filePath);
-
-    return `${file.name.split('.').join(' - ')} - ${fileSize} bytes`;
   });
 
   const result = await Promise.all(stats);
@@ -29,5 +27,5 @@ const getFiles = async (filesPath) => {
 };
 
 getFiles(PATH).then((res) => {
-  res.forEach((data) => console.log(data));
+  res.filter((data) => data).forEach((data) => console.log(data));
 });
